@@ -1,7 +1,9 @@
 # soda-sync
 
 Synchronous Version of the [soda](http://github.com/LearnBoost/soda.git) 
-selenium client.
+selenium client. This module uses [node-fibers](http://github.com/laverdet/node-fibers).
+
+A pretty interface to selenium is exposed this way, an alternative to the chains and callbacks.
 
 The Selenium methods in the 'tested' list below are reliable, most of others methods 
 probably work, but as I am testing this as I am using it, they may be some
@@ -17,6 +19,7 @@ npm install soda-sync
 
 ## usage (coffeescript)
 
+Notice the extra 'mode' field in the createClient options.
 
 ```coffeescript
 {soda,Soda} = require '../lib/soda-sync'
