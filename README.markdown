@@ -3,7 +3,7 @@
 Synchronous Version of the [soda](http://github.com/LearnBoost/soda.git) 
 selenium client.
 
-The Selenium methods in the 'tested' list below work, most of others methods 
+The Selenium methods in the 'tested' list below are reliable, most of others methods 
 probably work, but as I am testing this as I am using it, they may be some
 bugs. If it the case please open an issue.
 
@@ -93,13 +93,13 @@ mode: ['mixed','fibers']
 ## tested
 
 soda
-  createClient
+*  createClient
   
 browser
-  session
-  open
-  type
-  click
-  waitForElementPresent
-  getTitle
-  testComplete
+*  session
+*  open
+*  type
+*  click
+*  waitForElementPresent
+*  getTitle
+*  testComplete
