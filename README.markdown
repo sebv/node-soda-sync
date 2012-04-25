@@ -1,6 +1,6 @@
 # soda-sync
 
-Synchronous Version of the [soda](http://github.com/LearnBoost/soda.git) 
+A synchronous Version of the [soda](http://github.com/LearnBoost/soda.git) 
 selenium client. This module uses [node-fibers](http://github.com/laverdet/node-fibers).
 
 A pretty interface to selenium is exposed this way, an alternative to the chains and callbacks.
