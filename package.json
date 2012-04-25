@@ -1,0 +1,22 @@
+{
+    "name": "soda-sync"
+  , "version": "0.0.1"
+  , "description": "sync version of soda using fibers to write good looking test"
+  , "keywords": ["selenium","soda","test","fibers", "sync",""]
+  , "author": "Seb Vincent <seb.vincent@gmail.com>"
+  , "---repository": { "type": "git", "url": "git@github.com:sebv/node-make-sync.git" }
+  , "main": "./index"
+  , "engine": "node >= 0.6.1"
+  , "scripts": {
+    "test": "cake test"
+  }
+  , "dependencies": {
+    "soda": "latest",
+    "make-sync": "latest"
+  }
+  , "devDependencies" : {
+      "coffee-script" : "latest"
+    , "mocha" : "latest"
+    , "should": "latest"
+  }
+}
