@@ -15,7 +15,6 @@ describe "soda-regular", ->
 
   describe "retrieving google page", ->
     it "should work", (done) ->
-      console.log "OKOK", browser
       browser
         .chain
         .session()

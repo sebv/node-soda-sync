@@ -20,7 +20,6 @@
     });
     return describe("retrieving google page", function() {
       return it("should work", function(done) {
-        console.log("OKOK", browser);
         return browser.chain.session().open('/').getTitle(function(title) {
           return title.toLowerCase().should.include('google');
         }).end(function(err) {
