@@ -70,7 +70,36 @@ Soda ->
   @open '/'
   @testComplete()
 ```
+## to retrieve the browser currently in use
 
+The current browser is automatically stored in the Fiber context.
+It can be retrieved with the soda.current() function. 
+
+This is useful when writting test helpers.
+
+```coffeescript
+# Assumes that the selenium server is running
+
+{soda,Soda} = require 'soda-sync'
+
+browser = soda.createClient(
+  host: "localhost"
+  port: 4444
+  url: "http://www.google.com"
+  browser: "firefox"
+  mode: 'sync'
+)   
+
+openRoot = ->
+  soda.current().open '/'
+
+Soda = Soda with:browser
+
+Soda -> 
+  @session()
+  openRoot()  
+  @testComplete()
+```
 
 ## modes
 

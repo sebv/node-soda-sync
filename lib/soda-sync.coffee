@@ -10,6 +10,7 @@ buildOptions = (mode) ->
   }
 
 sodaSync =
+  # similar to soda
   createClient: (options) ->
     browser = soda.createClient options
     if(options?.mode?)
@@ -17,21 +18,27 @@ sodaSync =
       browser.queue = null  # necessary cause soda is doing weird stuff
     browser                 # in the 'chain' getter 
   
-cleanArgs = (ctx, cb) ->    
-  [ctx,cb] = [null,ctx] if typeof ctx is 'function' 
-  ctx = ctx?.with if ctx?.with?
-  [ctx,cb]
+  # retrieve the browser currently in use
+  # useful when writting helpers  
+  current: -> Fiber.current.soda_sync_browser
+  
+cleanArgs = (browser, cb) ->    
+  [browser,cb] = [null,browser] if typeof browser is 'function' 
+  browser = browser?.with if browser?.with?
+  [browser,cb]
 
-Soda = (ctx, cb) ->
-  [ctx,cb] = cleanArgs ctx, cb
+Soda = (browser, cb) ->
+  [browser,cb] = cleanArgs browser, cb
   if cb? then Sync ->
-    cb.apply ctx, []
-  if ctx
+    Fiber.current.soda_sync_browser = browser
+    cb.apply browser, []
+  if browser
     # returning an identical function with context(browser) preconfigured 
-    (ctx2, cb2) ->
-      [ctx2,cb2] = cleanArgs ctx2, cb2
-      ctx2 = ctx if not ctx2?
-      Soda ctx2, cb2      
+    (browser2, cb2) ->
+      [browser2,cb2] = cleanArgs browser2, cb2
+      browser2 = browser if not browser2?
+      Soda browser2, cb2      
+
 
 exports.Soda = Soda
 exports.soda = sodaSync

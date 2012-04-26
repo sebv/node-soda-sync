@@ -77,7 +77,7 @@
         });
       });
     });
-    return describe("all at once, without passing the browser to 'Soda'", function() {
+    describe("all at once, without passing the browser to 'Soda'", function() {
       return it("should work", function(done) {
         Soda = Soda({
           "with": browser
@@ -89,6 +89,24 @@
           this.click('btnG');
           this.waitForElementPresent('css=#topstuff');
           this.getTitle().toLowerCase().should.include('hello world');
+          this.testComplete();
+          return done();
+        });
+      });
+    });
+    return describe("retrieving the current browser in an external function", function() {
+      var myOwnGetTitle;
+      myOwnGetTitle = function() {
+        return soda.current().getTitle().toLowerCase();
+      };
+      return it("should work", function(done) {
+        Soda = Soda({
+          "with": browser
+        });
+        return Soda(function() {
+          this.session();
+          this.open('/');
+          myOwnGetTitle().toLowerCase().should.include('google');
           this.testComplete();
           return done();
         });

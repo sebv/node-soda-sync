@@ -56,4 +56,16 @@ describe "soda-sync", ->
         @getTitle().toLowerCase().should.include 'hello world'
         @testComplete()
         done()  
+  
+  describe "retrieving the current browser in an external function", ->
+    myOwnGetTitle = -> 
+      soda.current().getTitle().toLowerCase()      
+    it "should work", (done) ->
+      Soda = Soda with:browser               
+      Soda ->
+        @session()
+        @open '/'
+        myOwnGetTitle().toLowerCase().should.include 'google'
+        @testComplete()
+        done()  
 
