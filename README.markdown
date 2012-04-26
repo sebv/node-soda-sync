@@ -23,6 +23,8 @@ Notice the extra 'mode' field in the createClient options.
 All the methods from [soda](http://github.com/LearnBoost/soda.git)/Selenium are available. 
 
 ```coffeescript
+# Assumes that the selenium is running
+
 {soda,Soda} = require '../lib/soda-sync'
 
 browser = soda.createClient(
@@ -49,6 +51,8 @@ Soda with:browser, ->
 
 
 ```coffeescript
+# Assumes that the selenium is running
+
 {soda,Soda} = require '../lib/soda-sync'
 
 browser = soda.createClient(
