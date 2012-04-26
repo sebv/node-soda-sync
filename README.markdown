@@ -1,10 +1,10 @@
 # soda-sync
 
-A synchronous Version of the [soda](http://github.com/LearnBoost/soda.git) 
-Selenium client with a nice api, built using [node-fibers](http://github.com/laverdet/node-fibers).
+A synchronous Version with a nice api of [soda](http://github.com/LearnBoost/soda.git), the node client for
+[Selenium](http://seleniumhq.org), built using [node-fibers](http://github.com/laverdet/node-fibers).
 
 
-The Selenium methods in the 'tested' list below are reliable, most of others methods 
+The selenese methods in the 'tested' list below are reliable, most of others methods 
 probably work, but as I am testing this as I am using it, they may be some
 bugs. If it is the case please open an issue.
 
@@ -15,18 +15,12 @@ bugs. If it is the case please open an issue.
 npm install soda-sync
 ```
 
-## start [selenium server](http://seleniumhq.org/download/)  
-
-```
-java -jar selenium-server.jar
-```
-
-
 ## usage (coffeescript)
 
 Notice the extra 'mode' field in the createClient options.
 
-All the methods from [soda](http://github.com/LearnBoost/soda.git)/Selenium are available. 
+All the methods from [soda](http://github.com/LearnBoost/soda.git) / 
+[Selenium](http://seleniumhq.org) are available. 
 
 ```coffeescript
 # Assumes that the selenium server is running
@@ -91,6 +85,17 @@ mode: ['mixed']
 mode: ['mixed','args']
 
 mode: ['mixed','fibers']
+```
+
+
+## Selenium server
+
+Download the Selenium server [here](http://seleniumhq.org/download/).
+
+To start the server:
+
+```
+java -jar selenium-server.jar
 ```
 
 
