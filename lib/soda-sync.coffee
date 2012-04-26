@@ -14,7 +14,7 @@ sodaSync =
     if(options?.mode?)
       MakeSync browser, (buildOptions options.mode) 
       browser.queue = null  # necessary cause soda is doing weird stuff
-      browser               # in the 'chain' getter 
+    browser                 # in the 'chain' getter 
   
 cleanArgs = (ctx, cb) ->    
   [ctx,cb] = [null,ctx] if typeof ctx is 'function' 
