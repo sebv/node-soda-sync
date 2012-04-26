@@ -23,7 +23,7 @@ Notice the extra 'mode' field in the createClient options.
 All the methods from [soda](http://github.com/LearnBoost/soda.git)/Selenium are available. 
 
 ```coffeescript
-# Assumes that the selenium is running
+# Assumes that the selenium server is running
 
 {soda,Soda} = require 'soda-sync'
 
@@ -51,7 +51,7 @@ Soda with:browser, ->
 
 
 ```coffeescript
-# Assumes that the selenium is running
+# Assumes that the selenium server is running
 
 {soda,Soda} = require 'soda-sync'
 
@@ -62,22 +62,12 @@ browser = soda.createClient(
   browser: "firefox"
   mode: 'sync'
 )   
+
 Soda = Soda with:browser
 
-Soda ->
+Soda -> 
   @session()
   @open '/'
-
-Soda ->
-  @type 'q', 'Hello World'
-  @click 'btnG'
-
-Soda ->
-  @waitForElementPresent 'css=#topstuff' 
-  title = @getTitle()
-  console.log "Got title=", title        
-
-Soda ->
   @testComplete()
 ```
 
