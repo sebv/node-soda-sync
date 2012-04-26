@@ -11,41 +11,42 @@ describe "soda-sync", ->
       browser: "firefox"
       mode: 'sync'
     )   
-    Soda = Soda with:browser         
     done()
 
   describe "step by step run", ->
     it "open session", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @session()
         done()
     it "opens page", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @open '/'
         done()
     it "types something", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @type 'q', 'Hello World'
         done()
     it "clicks button", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @click 'btnG'
         done()
     it "waits", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @waitForElementPresent 'css=#topstuff' 
         done()
     it "checks title", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @getTitle().toLowerCase().should.include 'hello world'
         done()        
     it "finishes test", (done) ->
-      Soda ->
+      Soda with:browser, ->
         @testComplete()
         done()
 
-  describe "all at once", ->
+  describe "all at once, without passing the browser to 'Soda'", ->
     it "should work", (done) ->
+      Soda = Soda with:browser         
+      
       Soda ->
         @session()
         @open '/'
@@ -55,3 +56,4 @@ describe "soda-sync", ->
         @getTitle().toLowerCase().should.include 'hello world'
         @testComplete()
         done()  
+

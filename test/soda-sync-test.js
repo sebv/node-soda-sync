@@ -17,57 +17,71 @@
         browser: "firefox",
         mode: 'sync'
       });
-      Soda = Soda({
-        "with": browser
-      });
       return done();
     });
     describe("step by step run", function() {
       it("open session", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.session();
           return done();
         });
       });
       it("opens page", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.open('/');
           return done();
         });
       });
       it("types something", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.type('q', 'Hello World');
           return done();
         });
       });
       it("clicks button", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.click('btnG');
           return done();
         });
       });
       it("waits", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.waitForElementPresent('css=#topstuff');
           return done();
         });
       });
       it("checks title", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.getTitle().toLowerCase().should.include('hello world');
           return done();
         });
       });
       return it("finishes test", function(done) {
-        return Soda(function() {
+        return Soda({
+          "with": browser
+        }, function() {
           this.testComplete();
           return done();
         });
       });
     });
-    return describe("all at once", function() {
+    return describe("all at once, without passing the browser to 'Soda'", function() {
       return it("should work", function(done) {
+        Soda = Soda({
+          "with": browser
+        });
         return Soda(function() {
           this.session();
           this.open('/');
