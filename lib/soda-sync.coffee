@@ -30,7 +30,6 @@ Soda = (ctx, cb) ->
   if ctx
     # we return another function preconfigured for this browser
     (ctx2, cb2) ->
-      debugger
       [ctx2,cb2] = cleanArgs ctx2, cb2
       ctx2 = ctx if not ctx2?
       Soda ctx2, cb2      
