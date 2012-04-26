@@ -25,7 +25,7 @@ All the methods from [soda](http://github.com/LearnBoost/soda.git)/Selenium are 
 ```coffeescript
 # Assumes that the selenium is running
 
-{soda,Soda} = require '../lib/soda-sync'
+{soda,Soda} = require 'soda-sync'
 
 browser = soda.createClient(
   host: "localhost"
@@ -53,7 +53,7 @@ Soda with:browser, ->
 ```coffeescript
 # Assumes that the selenium is running
 
-{soda,Soda} = require '../lib/soda-sync'
+{soda,Soda} = require 'soda-sync'
 
 browser = soda.createClient(
   host: "localhost"
