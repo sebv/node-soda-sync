@@ -16,10 +16,8 @@ sodaSync =
       browser.queue = null  # necessary cause soda is doing weird stuff
       browser               # in the 'chain' getter 
   
-cleanArgs = (ctx, cb) ->
-  if typeof ctx is 'function'  
-    cb = ctx 
-    ctx = null
+cleanArgs = (ctx, cb) ->    
+  [ctx,cb] = [null,ctx] if typeof ctx is 'function' 
   ctx = ctx?.with if ctx?.with?
   [ctx,cb]
 
