@@ -2,7 +2,9 @@ should = require 'should'
 {soda,Soda,SodaCan} = require '../lib/soda-sync'
 
 describe "SodaCan", ->
+  
   browser = null;
+
   it "create client", (done) ->
     browser = soda.createClient (
       host: "localhost"
@@ -20,8 +22,10 @@ describe "SodaCan", ->
       @getTitle().toLowerCase().should.include 'google'
       @testComplete()
 
-  describe "with soda can, passing browser", ->
+  describe "with soda can, without passing browser", ->
+    
     SodaCan = SodaCan with: -> browser    
+    
     it "should work", SodaCan -> 
       @session()
       @open '/'

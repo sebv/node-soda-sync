@@ -31,7 +31,7 @@
         return this.testComplete();
       }));
     });
-    return describe("with soda can, passing browser", function() {
+    return describe("with soda can, without passing browser", function() {
       SodaCan = SodaCan({
         "with": function() {
           return browser;
