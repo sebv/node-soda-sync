@@ -20,6 +20,8 @@ npm install soda-sync
 
 Notice the extra 'mode' field in the createClient options.
 
+All the methods from [soda](http://github.com/LearnBoost/soda.git)/Selenium are available. 
+
 ```coffeescript
 {soda,Soda} = require '../lib/soda-sync'
 
