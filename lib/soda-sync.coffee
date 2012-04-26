@@ -5,7 +5,8 @@ buildOptions = (mode) ->
   mode = 'sync' if not mode?
   {
     mode: mode
-    exclude: ['enqueue','command','emit','commandPath','on']
+    exclude: '*'
+    include: soda.commands.concat ['session']
   }
 
 sodaSync =

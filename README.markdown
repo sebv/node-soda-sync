@@ -15,6 +15,12 @@ bugs. If it is the case please open an issue.
 npm install soda-sync
 ```
 
+## start [selenium server](http://seleniumhq.org/download/)  
+
+```
+java -jar selenium-server.jar
+```
+
 
 ## usage (coffeescript)
 
