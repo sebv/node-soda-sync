@@ -26,7 +26,7 @@ Soda = (ctx, cb) ->
   if cb? then Sync ->
     cb.apply ctx, []
   if ctx
-    # we return another function preconfigured for this browser
+    # returning an identical function with context(browser) preconfigured 
     (ctx2, cb2) ->
       [ctx2,cb2] = cleanArgs ctx2, cb2
       ctx2 = ctx if not ctx2?
