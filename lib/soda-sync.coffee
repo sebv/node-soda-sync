@@ -37,8 +37,25 @@ Soda = (browser, cb) ->
     (browser2, cb2) ->
       [browser2,cb2] = cleanArgs browser2, cb2
       browser2 = browser if not browser2?
-      Soda browser2, cb2      
+      Soda with:browser2, cb2      
 
+# careful, below browser is a function so it get evaluated with the rest
+# of the code  
+SodaCan = (browser, cb) ->
+  [browser,cb] = cleanArgs browser, cb
+  if cb?
+    return (done) ->
+      Sync ->
+        Fiber.current.soda_sync_browser = browser?()
+        cb.apply browser?(), []
+        done() if done?
+  if browser
+    # returning an identical function with context(browser) preconfigured 
+    return (browser2, cb2) ->
+      [browser2,cb2] = cleanArgs browser2, cb2
+      browser2 = browser if not browser2?
+      SodaCan with:browser2, cb2      
 
 exports.Soda = Soda
+exports.SodaCan = SodaCan
 exports.soda = sodaSync
