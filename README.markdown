@@ -22,6 +22,10 @@ Notice the extra 'mode' field in the createClient options.
 All the methods from [soda](http://github.com/LearnBoost/soda.git) / 
 [Selenium](http://seleniumhq.org) are available. 
 
+In sync mode, the browser function must to be run within a Soda block. This 
+block holds the fiber environment. The Soda block context is set to the browser, 
+so that the browser methods may be accessed using '@'.
+
 ```coffeescript
 # Assumes that the selenium server is running
 
@@ -46,10 +50,49 @@ Soda with:browser, ->
   @testComplete()
 ```
 
+## SodaCan
 
-## to avoid repeating 'with: browser' 
+SodaCan is a wrapper around Soda. It returns a function with an optional 'done' callback, 
+called as the last command just before the fiber is closed. 
 
+The example below is using the mocha test framework. Notice that the usual 'done' callback 
+is already managed by SodaCan, so can be omited.
 
+Also note that the browser parameter is a function returning the browser so that the browser 
+object initialization can be delayed.
+
+```coffeescript
+# Assumes that the selenium server is running
+
+should = require 'should'
+{soda,Soda,SodaCan} = require 'soda-sync'
+
+describe "SodaCan", ->
+  browser = null;
+  it "create client", (done) ->
+    browser = soda.createClient (
+      host: "localhost"
+      port: 4444
+      url: "http://www.google.com"
+      browser: "firefox"
+      mode: 'sync'
+    )   
+    done()
+
+  describe "with soda can, passing browser", ->
+    it "should work", SodaCan with: (-> browser), -> 
+      @session()
+      @open '/'
+      @getTitle().toLowerCase().should.include 'google'
+      @testComplete()
+```
+
+## to avoid repeating 'with: browser' or 'with: (-> browser)'
+
+When there is a browser parameter and no callback, Soda or SodaCan
+returns a version of itself with a browser default added.
+
+Soda sample below:
 ```coffeescript
 # Assumes that the selenium server is running
 
@@ -70,6 +113,38 @@ Soda ->
   @open '/'
   @testComplete()
 ```
+
+SodaCan sample below, using the mocha test framework:
+```coffeescript
+# Assumes that the selenium server is running
+
+should = require 'should'
+{soda,Soda,SodaCan} = require 'soda-sync'
+
+describe "SodaCan", ->
+  
+  browser = null;
+  SodaCan = SodaCan with: -> browser    
+
+  it "create client", (done) ->
+    browser = soda.createClient (
+      host: "localhost"
+      port: 4444
+      url: "http://www.google.com"
+      browser: "firefox"
+      mode: 'sync'
+    )   
+    done()
+
+  describe "with soda can, without passing browser", ->
+    it "should work", SodaCan -> 
+      @session()
+      @open '/'
+      @getTitle().toLowerCase().should.include 'google'
+      @testComplete()    
+```
+
+
 ## to retrieve the browser currently in use
 
 The current browser is automatically stored in the Fiber context.
