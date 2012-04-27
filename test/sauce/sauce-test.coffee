@@ -7,7 +7,7 @@ should = require 'should'
 config = null
 try config = require './config' catch err 
 
-describe "soda-sync", ->
+describe "sauce integration", ->
   
   browser = null;
   it "create client", (done) ->    
@@ -26,18 +26,18 @@ describe "soda-sync", ->
       mode: 'sync'
     )
     browser.on 'command', (cmd, args) ->
-      console.log(' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', '));    
+      console.log ' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', ')   
     done()
   describe "all at once, without passing the browser to 'Soda'", ->
     it "should work", (done) ->
       @timeout 90000      
       Soda with:browser, ->
-        this.session();
-        this.open('/');
-        this.type('q', 'Hello World');
-        this.click('btnG');
-        this.waitForElementPresent('css=#topstuff');
-        this.getTitle().toLowerCase().should.include('hello world');
+        this.session()
+        this.open '/'
+        this.type 'q', 'Hello World'
+        this.click 'btnG'
+        this.waitForElementPresent 'css=#topstuff'
+        this.getTitle().toLowerCase().should.include 'hello world'
         browser.setContext "sauce:job-info={\"passed\": true}"
         @testComplete()
         browser.jobUrl.should.include "jobs"
