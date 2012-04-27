@@ -178,7 +178,7 @@ Soda ->
 
 ## modes
 
-check [make-sync](http://github.com/sebv/node-make-sync) for more details. 
+check [make-sync](http://github.com/sebv/node-make-sync/blob/master/README.markdown#modes) for more details. 
 Probably best to use the 'sync' mode.
 
 ```coffeescript
