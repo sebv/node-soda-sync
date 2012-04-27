@@ -14,7 +14,7 @@
 
   }
 
-  describe("soda-sync", function() {
+  describe("integration with Saucelabs", function() {
     var browser;
     browser = null;
     it("create client", function(done) {
