@@ -4,7 +4,7 @@
 
   should = require('should');
 
-  _ref = require('../lib/soda-sync'), soda = _ref.soda, Soda = _ref.Soda, SodaCan = _ref.SodaCan;
+  _ref = require('../../lib/soda-sync'), soda = _ref.soda, Soda = _ref.Soda, SodaCan = _ref.SodaCan;
 
   describe("SodaCan", function() {
     var browser;

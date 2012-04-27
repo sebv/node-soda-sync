@@ -10,7 +10,10 @@ task 'clean', 'Remove all js files', ->
   cleanAllJs()
 
 task 'test', 'Run All tests', ->
-  testDir 'test' 
+  testDir 'test/unit'
+   
+task 'test:sauce', 'Run All tests', ->
+  testDir 'test/sauce'
 
 task 'grep:dirty', 'Lookup for debugger and console.log in code', ->
   grepDirty()

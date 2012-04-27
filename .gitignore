@@ -1,3 +1,8 @@
 node_modules
 .DS_Store
 workdir
+test/sauce/config.coffee
+test/sauce/config.js
+
+
+

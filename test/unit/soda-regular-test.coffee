@@ -1,5 +1,5 @@
 should = require 'should'
-{soda,Soda} = require '../lib/soda-sync'
+{soda,Soda} = require '../../lib/soda-sync'
 
 describe "soda-regular", ->
   browser = null;

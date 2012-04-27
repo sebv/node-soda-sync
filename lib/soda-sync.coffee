@@ -9,15 +9,19 @@ buildOptions = (mode) ->
     include: soda.commands.concat ['session']
   }
 
+patch = (browser, options) ->
+  if(options?.mode?)
+    MakeSync browser, (buildOptions options.mode) 
+    browser.queue = null  # necessary cause soda is doing weird stuff
+  browser                 # in the 'chain' getter 
+
 sodaSync =
   # similar to soda
-  createClient: (options) ->
-    browser = soda.createClient options
-    if(options?.mode?)
-      MakeSync browser, (buildOptions options.mode) 
-      browser.queue = null  # necessary cause soda is doing weird stuff
-    browser                 # in the 'chain' getter 
-  
+  createClient: (options) -> 
+    patch (soda.createClient options), options
+  createSauceClient: (options) -> 
+    patch (soda.createSauceClient options), options
+    
   # retrieve the browser currently in use
   # useful when writting helpers  
   current: -> Fiber.current.soda_sync_browser

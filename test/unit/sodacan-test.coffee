@@ -1,5 +1,5 @@
 should = require 'should'
-{soda,Soda,SodaCan} = require '../lib/soda-sync'
+{soda,Soda,SodaCan} = require '../../lib/soda-sync'
 
 describe "SodaCan", ->
   
