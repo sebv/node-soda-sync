@@ -3,6 +3,7 @@
 A synchronous Version with a nice api of [soda](http://github.com/LearnBoost/soda.git), the node client for
 [Selenium](http://seleniumhq.org), built using [node-fibers](http://github.com/laverdet/node-fibers).
 
+Remote testing with [Sauce Labs](http://saucelabs.com) also works.
 
 The selenese methods in the 'tested' list below are reliable, most of others methods 
 probably work, but as I am testing this as I am using it, they may be some
@@ -49,6 +50,44 @@ Soda with:browser, ->
   console.log "Got title=", title        
   @testComplete()
 ```
+## Sauce Labs example
+
+Remote testing with [Sauce Labs](http://saucelabs.com), works the same as with soda,
+just add the mode field to the options.
+
+```coffeescript
+{soda,Soda} = require 'soda-sync'
+
+# configure your sauce account here
+username = '<USERNAME>'
+access_key = '<ACCESS-KEY>'
+
+browser = soda.createSauceClient(
+  url: "http://www.google.com"
+  username: username
+  "access-key": access_key
+  os: "Linux"
+  browser: "firefox"
+  "browser-version": "3."
+  "max-duration": 300
+  name: "soda-sync sauce example"
+  mode: 'sync'
+)
+browser.on 'command', (cmd, args) ->
+  console.log ' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', ')   
+
+Soda with:browser, ->
+  this.session()
+  this.open '/'
+  this.type 'q', 'Hello World'
+  this.click 'btnG'
+  this.waitForElementPresent 'css=#topstuff'
+  console.log this.getTitle()
+  browser.setContext "sauce:job-info={\"passed\": true}"
+  @testComplete()
+  console.log  browser.jobUrl
+```
+
 
 ## SodaCan
 
