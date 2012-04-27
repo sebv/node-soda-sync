@@ -14,7 +14,7 @@
 
   }
 
-  describe("integration with Saucelabs", function() {
+  describe("sauce integration", function() {
     var browser;
     browser = null;
     it("create client", function(done) {
