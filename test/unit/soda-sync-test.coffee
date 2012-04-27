@@ -12,7 +12,6 @@ describe "soda-sync", ->
       mode: 'sync'
     )   
     done()
-
   describe "step by step run", ->
     it "open session", (done) ->
       Soda with:browser, ->
@@ -42,7 +41,6 @@ describe "soda-sync", ->
       Soda with:browser, ->
         @testComplete()
         done()
-
   describe "all at once, without passing the browser to 'Soda'", ->
     it "should work", (done) ->
       Soda = Soda with:browser         
@@ -56,7 +54,6 @@ describe "soda-sync", ->
         @getTitle().toLowerCase().should.include 'hello world'
         @testComplete()
         done()  
-  
   describe "retrieving the current browser in an external function", ->
     myOwnGetTitle = -> 
       soda.current().getTitle().toLowerCase()      

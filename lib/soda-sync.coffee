@@ -35,7 +35,7 @@ Soda = (options, cb) ->
   if options
     # returning an identical function with context(browser) preconfigured 
     (options2, cb2) ->
-      [options2,cb2] = cleanArgs options2, cb2
+      [options2,cb2] = [null,options2] if typeof options2 is 'function' 
       options2 = options if not options2?
       Soda options2, cb2      
 
@@ -52,7 +52,7 @@ SodaCan = (options, cb) ->
   if options
     # returning an identical function with context(browser) preconfigured 
     return (options2, cb2) ->
-      [options2,cb2] = cleanArgs options2, cb2
+      [options2,cb2] = [null,options2] if typeof options2 is 'function' 
       options2 = options if not options2?
       SodaCan options2, cb2      
 
