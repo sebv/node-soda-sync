@@ -27,7 +27,7 @@
       }, function() {
         this.session();
         this.open('/');
-        this.getTitle().toLowerCase().should.include('google');
+        this.getTitle()[0].toLowerCase().should.include('google');
         return this.testComplete();
       }));
     });
@@ -40,7 +40,7 @@
       return it("should work", SodaCan(function() {
         this.session();
         this.open('/');
-        this.getTitle().toLowerCase().should.include('google');
+        this.getTitle()[0].toLowerCase().should.include('google');
         return this.testComplete();
       }));
     });

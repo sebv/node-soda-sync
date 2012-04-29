@@ -35,7 +35,8 @@ describe "soda-sync", ->
         done()
     it "checks title", (done) ->
       Soda with:browser, ->
-        @getTitle().toLowerCase().should.include 'hello world'
+        title = @getTitle()
+        title[0].toLowerCase().should.include 'hello world' #TODO figure out why
         done()        
     it "finishes test", (done) ->
       Soda with:browser, ->
@@ -51,12 +52,13 @@ describe "soda-sync", ->
         @type 'q', 'Hello World'
         @click 'btnG'
         @waitForElementPresent 'css=#topstuff' 
-        @getTitle().toLowerCase().should.include 'hello world'
+        title = @getTitle()
+        title[0].toLowerCase().should.include 'hello world'
         @testComplete()
         done()  
   describe "retrieving the current browser in an external function", ->
     myOwnGetTitle = -> 
-      soda.current().getTitle().toLowerCase()      
+      soda.current().getTitle()[0].toLowerCase()      
     it "should work", (done) ->
       Soda = Soda with:browser               
       Soda ->

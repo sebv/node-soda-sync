@@ -46,7 +46,7 @@
           this.type('q', 'Hello World');
           this.click('btnG');
           this.waitForElementPresent('css=#topstuff');
-          this.getTitle().toLowerCase().should.include('hello world');
+          this.getTitle()[0].toLowerCase().should.include('hello world');
           browser.setContext("sauce:job-info={\"passed\": true}");
           this.testComplete();
           browser.jobUrl.should.include("jobs");

@@ -19,7 +19,7 @@ describe "SodaCan", ->
     it "should work", SodaCan with: (-> browser), -> 
       @session()
       @open '/'
-      @getTitle().toLowerCase().should.include 'google'
+      @getTitle()[0].toLowerCase().should.include 'google' #TODO figure out why
       @testComplete()
 
   describe "with soda can, without passing browser", ->
@@ -29,7 +29,7 @@ describe "SodaCan", ->
     it "should work", SodaCan -> 
       @session()
       @open '/'
-      @getTitle().toLowerCase().should.include 'google'
+      @getTitle()[0].toLowerCase().should.include 'google'
       @testComplete()
 
     

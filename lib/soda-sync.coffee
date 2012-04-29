@@ -7,6 +7,7 @@ buildOptions = (mode) ->
     mode: mode
     exclude: '*'
     include: soda.commands.concat ['session']
+    error_type: 'callback'
   }
 
 patch = (browser, options) ->
