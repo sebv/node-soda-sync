@@ -5,11 +5,6 @@ A synchronous Version with a nice api of [soda](http://github.com/LearnBoost/sod
 
 Remote testing with [Sauce Labs](http://saucelabs.com) also works.
 
-The selenese methods in the 'tested' list below are reliable, most of others methods 
-probably work, but as I am testing this as I am using it, they may be some
-bugs. If it is the case please open an issue.
-
-
 ## install
 
 ```
