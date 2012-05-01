@@ -18,6 +18,5 @@
       "coffee-script" : "latest"
     , "mocha" : "latest"
     , "should": "latest"
-    , "async": "latest"
   }
 }
