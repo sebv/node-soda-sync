@@ -15,7 +15,8 @@
     "make-sync": "latest"
   }
   , "devDependencies" : {
-      "coffee-script" : "latest"
+    "sv-cake-utils" : "latest"
+    ,  "coffee-script" : "latest"
     , "mocha" : "latest"
     , "should": "latest"
   }
