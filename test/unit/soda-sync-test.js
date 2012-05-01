@@ -64,9 +64,7 @@
         return Soda({
           "with": browser
         }, function() {
-          var title;
-          title = this.getTitle();
-          title[0].toLowerCase().should.include('hello world');
+          this.getTitle().toLowerCase().should.include('hello world');
           return done();
         });
       });
@@ -85,14 +83,12 @@
           "with": browser
         });
         return Soda(function() {
-          var title;
           this.session();
           this.open('/');
           this.type('q', 'Hello World');
           this.click('btnG');
           this.waitForElementPresent('css=#topstuff');
-          title = this.getTitle();
-          title[0].toLowerCase().should.include('hello world');
+          this.getTitle().toLowerCase().should.include('hello world');
           this.testComplete();
           return done();
         });
@@ -101,7 +97,7 @@
     return describe("retrieving the current browser in an external function", function() {
       var myOwnGetTitle;
       myOwnGetTitle = function() {
-        return soda.current().getTitle()[0].toLowerCase();
+        return soda.current().getTitle();
       };
       return it("should work", function(done) {
         Soda = Soda({

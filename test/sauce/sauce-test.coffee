@@ -37,7 +37,7 @@ describe "sauce integration", ->
         this.type 'q', 'Hello World'
         this.click 'btnG'
         this.waitForElementPresent 'css=#topstuff'
-        this.getTitle()[0].toLowerCase().should.include 'hello world' #TODO figure out why
+        this.getTitle().toLowerCase().should.include 'hello world'
         browser.setContext "sauce:job-info={\"passed\": true}"
         @testComplete()
         browser.jobUrl.should.include "jobs"
