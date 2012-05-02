@@ -45,6 +45,7 @@ SodaCan = (options, cb) ->
   [options,cb] = [null,options] if typeof options is 'function' 
   if cb?
     return (done) ->
+      options.pre.apply @, [] if options?.pre?
       Sync ->
         Fiber.current.soda_sync_browser = options?.with?()
         cb.apply options?.with?(), []
