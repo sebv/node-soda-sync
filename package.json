@@ -1,7 +1,7 @@
 {
     "name": "soda-sync"
   , "version": "0.1.0"
-  , "description": "sync version of soda using fibers to write good looking test"
+  , "description": "sync version of soda using fibers."
   , "keywords": ["selenium","soda","test","fibers", "sync"]
   , "author": "Seb Vincent <seb.vincent@gmail.com>"
   , "repository": { "type": "git", "url": "git@github.com:sebv/node-soda-sync.git" }
