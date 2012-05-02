@@ -13,10 +13,12 @@ npm install soda-sync
 
 ## usage (coffeescript)
 
-Notice the extra 'mode' field in the createClient options.
+When calling createClient to get a new browser object,  add an extra 'mode' 
+field need to be passed in the options.
 
 All the methods from [soda](http://github.com/LearnBoost/soda.git) / 
 [Selenium](http://seleniumhq.org) are available. 
+
 
 In sync mode, the browser function must to be run within a Soda block. This 
 block holds the fiber environment. The Soda block context is set to the browser, 
