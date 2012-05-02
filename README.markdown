@@ -133,7 +133,7 @@ describe "SodaCan", ->
 ```
 
 
-## to avoid repeating 'with: browser' or 'with: (-> browser)'
+## a slightly leaner syntax
 
 When there is a browser parameter and no callback, Soda or SodaCan
 returns a version of itself with a browser default added.
