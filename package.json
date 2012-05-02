@@ -16,7 +16,6 @@
   }
   , "devDependencies" : {
     "sv-cake-utils" : "latest"
-    ,  "coffee-script" : "latest"
     , "mocha" : "latest"
     , "should": "latest"
   }
