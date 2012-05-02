@@ -72,12 +72,12 @@ browser.on 'command', (cmd, args) ->
   console.log ' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', ')   
 
 Soda with:browser, ->
-  this.session()
-  this.open '/'
-  this.type 'q', 'Hello World'
-  this.click 'btnG'
-  this.waitForElementPresent 'css=#topstuff'
-  console.log this.getTitle()
+  @session()
+  @open '/'
+  @type 'q', 'Hello World'
+  @click 'btnG'
+  @waitForElementPresent 'css=#topstuff'
+  console.log @getTitle()
   browser.setContext "sauce:job-info={\"passed\": true}"
   @testComplete()
   console.log  browser.jobUrl
