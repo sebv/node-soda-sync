@@ -1,6 +1,8 @@
 should = require 'should'
 {soda,Soda,SodaCan} = require '../../lib/soda-sync'
 
+someText = null
+
 describe "SodaCan", ->
   
   browser = null;
@@ -16,7 +18,14 @@ describe "SodaCan", ->
     done()
 
   describe "with soda can, passing browser", ->
-    it "should work", SodaCan with: (-> browser), -> 
+    it "should work", SodaCan
+      with: -> 
+        browser
+      pre: ->
+        @timeout 30000
+        someText = 'Test1'
+    , -> 
+      someText.should.equal 'Test1' 
       @session()
       @open '/'
       @getTitle().toLowerCase().should.include 'google'
@@ -24,9 +33,15 @@ describe "SodaCan", ->
 
   describe "with soda can, without passing browser", ->
     
-    SodaCan = SodaCan with: -> browser    
+    SodaCan = SodaCan 
+      with: -> 
+        browser    
+      pre: ->
+        @timeout 30000
+        someText = 'Test2'
     
     it "should work", SodaCan -> 
+      someText.should.equal 'Test2' 
       @session()
       @open '/'
       @getTitle().toLowerCase().should.include 'google'
