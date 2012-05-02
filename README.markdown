@@ -97,14 +97,18 @@ is already managed by SodaCan, so can be omited.
 Also note that the browser parameter is a function returning the browser so that the browser 
 object initialization can be delayed.
 
+A 'pre' method may also be specified. It is called before the Wd block starts, in the original 
+context (In Mocha for example, it can be used to configure timeouts). 
+
 ```coffeescript
 # Assumes that the selenium server is running
 
 should = require 'should'
-{soda,Soda,SodaCan} = require 'soda-sync'
+{soda,SodaCan} = require 'soda-sync'
 
 describe "SodaCan", ->
   browser = null;
+  
   it "create client", (done) ->
     browser = soda.createClient (
       host: "localhost"
@@ -116,12 +120,18 @@ describe "SodaCan", ->
     done()
 
   describe "with soda can, passing browser", ->
-    it "should work", SodaCan with: (-> browser), -> 
+    it "should work", SodaCan 
+      with: -> 
+        browser
+      pre: -> 
+        @timeout 30000
+    , -> 
       @session()
       @open '/'
       @getTitle().toLowerCase().should.include 'google'
       @testComplete()
 ```
+
 
 ## to avoid repeating 'with: browser' or 'with: (-> browser)'
 
@@ -155,21 +165,24 @@ SodaCan sample below, using the mocha test framework:
 # Assumes that the selenium server is running
 
 should = require 'should'
-{soda,Soda,SodaCan} = require 'soda-sync'
+{soda,SodaCan} = require 'soda-sync'
 
 describe "SodaCan", ->
   
   browser = null;
-  SodaCan = SodaCan with: -> browser    
+  SodaCan = SodaCan 
+    with: 
+      -> browser    
+    pre: 
+      -> @timeout 30000    
 
   it "create client", (done) ->
-    browser = soda.createClient (
+    browser = soda.createClient
       host: "localhost"
       port: 4444
       url: "http://www.google.com"
       browser: "firefox"
       mode: 'sync'
-    )   
     done()
 
   describe "with soda can, without passing browser", ->
@@ -177,7 +190,7 @@ describe "SodaCan", ->
       @session()
       @open '/'
       @getTitle().toLowerCase().should.include 'google'
-      @testComplete()    
+      @testComplete()         
 ```
 
 
