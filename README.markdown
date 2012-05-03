@@ -197,7 +197,7 @@ describe "SodaCan", ->
 The current browser is automatically stored in the Fiber context.
 It can be retrieved with the soda.current() function. 
 
-This is useful when writting test helpers.
+This is useful when writing test helpers.
 
 ```coffeescript
 # Assumes that the selenium server is running
