@@ -1,5 +1,5 @@
 --compilers coffee:coffee-script
 --ui bdd
 --reporter spec
--t 20000
+-t 45000
 --bail
