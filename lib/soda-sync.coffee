@@ -57,6 +57,13 @@ SodaCan = (options, cb) ->
       options2 = options if not options2?
       SodaCan options2, cb2      
 
+# naming used in examples and doc
 exports.Soda = Soda
 exports.SodaCan = SodaCan
 exports.soda = sodaSync
+
+# alternate JSLint compliant naming
+exports.sync = Soda
+exports.can = SodaCan
+
+

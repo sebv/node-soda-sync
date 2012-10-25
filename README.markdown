@@ -222,6 +222,12 @@ Soda ->
   openRoot()  
   @testComplete()
 ```
+## alternate naming (JSLint Compliant)
+
+{soda,sync,can} = require 'soda-sync'
+
+- sync is the same as Soda
+- can is the same as SodaCan 
 
 ## modes
 
