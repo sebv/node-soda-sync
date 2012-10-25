@@ -224,7 +224,9 @@ Soda ->
 ```
 ## alternate naming (JSLint Compliant)
 
+```coffeescript
 {soda,sync,can} = require 'soda-sync'
+```
 
 - sync is the same as Soda
 - can is the same as SodaCan 
