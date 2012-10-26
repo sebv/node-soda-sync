@@ -9,39 +9,68 @@
   someText = null;
 
   describe("can", function() {
-    var browser, can;
-    browser = null;
-    can = sodaSync.can({
-      "with": function() {
-        return browser;
-      },
-      pre: function() {
-        return this.timeout(30000);
-      }
-    });
-    it("create client", function(done) {
-      browser = sodaSync.createClient({
-        host: "localhost",
-        port: 4444,
-        url: "http://www.google.com",
-        browser: "firefox",
-        mode: 'sync'
-      }).browser;
-      return done();
-    });
-    return describe("with soda can", function() {
-      return it("should work", can({
-        pre: function() {
-          this.timeout(30000);
-          return someText = 'Test1';
+    describe("no pre", function() {
+      var browser, can;
+      browser = null;
+      can = sodaSync.can({
+        "with": function() {
+          return browser;
         }
-      }, function() {
-        someText.should.equal('Test1');
-        this.session();
-        this.open('/');
-        this.getTitle().toLowerCase().should.include('google');
-        return this.testComplete();
-      }));
+      });
+      it("create client", function(done) {
+        browser = sodaSync.createClient({
+          host: "localhost",
+          port: 4444,
+          url: "http://www.google.com",
+          browser: "firefox",
+          mode: 'sync'
+        }).browser;
+        return done();
+      });
+      return describe("with soda can", function() {
+        return it("should work", can(function() {
+          this.session();
+          this.open('/');
+          this.getTitle().toLowerCase().should.include('google');
+          return this.testComplete();
+        }));
+      });
+    });
+    return describe("with pre", function() {
+      var browser, can;
+      browser = null;
+      can = sodaSync.can({
+        "with": function() {
+          return browser;
+        },
+        pre: function() {
+          return this.timeout(30000);
+        }
+      });
+      it("create client", function(done) {
+        browser = sodaSync.createClient({
+          host: "localhost",
+          port: 4444,
+          url: "http://www.google.com",
+          browser: "firefox",
+          mode: 'sync'
+        }).browser;
+        return done();
+      });
+      return describe("with soda can", function() {
+        return it("should work", can({
+          pre: function() {
+            this.timeout(30000);
+            return someText = 'Test1';
+          }
+        }, function() {
+          someText.should.equal('Test1');
+          this.session();
+          this.open('/');
+          this.getTitle().toLowerCase().should.include('google');
+          return this.testComplete();
+        }));
+      });
     });
   });
 
