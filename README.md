@@ -174,7 +174,7 @@ sync ->
 ## JavaScript
 
 This module is designed with CoffeeScript in mind, but you could
-initialize your browser like the following example, then use `browser` or `this` 
+initialize browser and sync like in the following example, then use `browser` or `this` 
 instead of `@` in the sync/can blocks:
 
 ```javascript
