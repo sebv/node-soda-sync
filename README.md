@@ -1,5 +1,7 @@
 # soda-sync
 
+Note: API change in version 1.0.0, see below.
+
 A synchronous Version with a nice api of [soda](http://github.com/LearnBoost/soda.git), the node client for
 [Selenium](http://seleniumhq.org), built using [node-fibers](http://github.com/laverdet/node-fibers).
 
@@ -19,7 +21,7 @@ npm install soda-sync
 
 sodaSync = require 'soda-sync'
 
-browser = sodaSync.createClient(
+{browser,sync} = sodaSync.createClient(
   host: "localhost"
   port: 4444
   url: "http://www.google.com"
@@ -44,6 +46,15 @@ All the methods from [soda](http://github.com/LearnBoost/soda.git) /
 The browser methods must be called within a sync block which holds the fiber environment. 
 The sync block context is set to the Soda browser so that the browser methods may be 
 accessed using '@'.
+
+## upgrade to V1
+
+API was simplified thos are the main changes:
+
+- 1/ require: sodaSync = require 'soda-sync'
+- 2/ createClient: {browser,sync} = sodaSync.createClient(...
+- 3/ Soda becomes sync
+- 4/ SodaCan becomes can (see can section below)
 
 ## Sauce Labs example
 
@@ -105,7 +116,7 @@ describe "can", ->
   {browser} = null;
   can = sodaSync.can
     with: -> browser
-    pre: -> @timeout 60000 # global pre
+    pre: -> @timeout 60000 # optional global pre
 
   it "create client", (done) ->
     {browser} = sodaSync.createClient (
@@ -117,7 +128,14 @@ describe "can", ->
     )   
     done()
 
-  describe "with soda can", ->
+  describe "can without pre", ->
+    it "should work", can ->
+      @session()
+      @open '/'
+      @getTitle().toLowerCase().should.include 'google'
+      @testComplete()
+
+  describe "can with pre", ->
     it "should work", can 
       pre: -> 
         @timeout 30000 # local pre
