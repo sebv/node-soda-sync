@@ -1,33 +1,29 @@
 soda = require("soda")
 {MakeSync,Sync} = require 'make-sync'
 
-buildOptions = (mode) ->
-  mode = 'sync' if not mode?
-  {
-    mode: mode
-    exclude: '*'
-    include: soda.commands.concat ['session']
-  }
+buildOptions = 
+  mode: 'sync'
+  exclude: '*'
+  include: soda.commands.concat ['session']
 
 patch = (browser, options) ->
-  if(options?.mode?)
-    MakeSync browser, (buildOptions options.mode) 
-    
-    # necessary cause soda is doing weird stuff in the 'chain' getter 
-    browser.queue = null  
-    
-    sync = (cb) ->
-      if cb?
-        Sync ->
-          Fiber.current.soda_sync_browser = browser
-          cb.apply browser , []
-    {browser,sync}
+  MakeSync browser, buildOptions
+  
+  # necessary cause soda is doing weird stuff in the 'chain' getter 
+  browser.queue = null
+  
+  sync = (cb) ->
+    if cb?
+      Sync ->
+        Fiber.current.soda_sync_browser = browser
+        cb.apply browser , []
+  {browser,sync}
 
 sodaSync =
   # similar to soda
-  createClient: (options) -> 
+  createClient: (options) ->
     patch (soda.createClient options), options
-  createSauceClient: (options) -> 
+  createSauceClient: (options) ->
     patch (soda.createSauceClient options), options
     
   # retrieve the browser currently in use
@@ -39,7 +35,7 @@ sodaSync =
   # of the code  
   can: (globalOptions) ->
     (options, cb) ->
-      [options,cb] = [null,options] if typeof options is 'function' 
+      [options,cb] = [null,options] if typeof options is 'function'
       if cb?
         return (done) ->
           globalOptions.pre.apply @, [] if globalOptions?.pre?

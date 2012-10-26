@@ -9,7 +9,6 @@ describe "sync", ->
       port: 4444
       url: "http://www.google.com"
       browser: "firefox"
-      mode: 'sync'
     )
     done()
   

@@ -22,8 +22,7 @@
           host: "localhost",
           port: 4444,
           url: "http://www.google.com",
-          browser: "firefox",
-          mode: 'sync'
+          browser: "firefox"
         }).browser;
         return done();
       });
@@ -52,8 +51,7 @@
           host: "localhost",
           port: 4444,
           url: "http://www.google.com",
-          browser: "firefox",
-          mode: 'sync'
+          browser: "firefox"
         }).browser;
         return done();
       });

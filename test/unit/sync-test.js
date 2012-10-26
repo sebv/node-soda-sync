@@ -15,8 +15,7 @@
         host: "localhost",
         port: 4444,
         url: "http://www.google.com",
-        browser: "firefox",
-        mode: 'sync'
+        browser: "firefox"
       }), browser = _ref1.browser, sync = _ref1.sync;
       return done();
     });

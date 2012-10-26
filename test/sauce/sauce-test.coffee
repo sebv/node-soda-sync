@@ -23,7 +23,6 @@ describe "sauce integration", ->
         "browser-version": "3."
         "max-duration": 300
         name: "soda-sync sauce test"
-        mode: 'sync'
     
     browser.on 'command', (cmd, args) ->
       console.log ' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', ')   
