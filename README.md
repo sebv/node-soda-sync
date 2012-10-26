@@ -178,14 +178,14 @@ initialize your browser like the following example, then use `browser` or `this`
 instead of `@` in the sync/can blocks:
 
 ```javascript
-var client = sodaSync.createClient(
-    host: "localhost"
-    port: 4444
-    url: "http://www.google.com"
+var client = sodaSync.createClient({
+    host: "localhost",
+    port: 4444,
+    url: "http://www.google.com",
     browser: "firefox"
-  )       
-  , browser = client.browser,
-  , sync = client.sync;
+  }),      
+  browser = client.browser,
+  sync = client.sync;
 ```
 
 ## Selenium server
