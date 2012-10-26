@@ -107,12 +107,12 @@ sync ->
 can is a wrapper around Soda, making it easy to integrate with the usual
 test frameworks.
 
-The example below is using the mocha test framework. The usual 'done' callback is managed within the Soda can.
+The example below is using the mocha test framework. The 'done' callback is managed within the Soda can.
 
 The 'with' parameter is a function returning the browser evaluated each time the block is opened.
 
-'pre' methoda may also be specified globally or locally. It is called before the Soda block starts, in the original 
-context (In Mocha, it can be used to configure timeouts).
+'pre' methods may be specified globally or locally. They are called before the can block starts,
+without switching context (In Mocha, it can be used to configure timeouts).
 
 ```coffeescript
 # Assumes that the selenium server is running
