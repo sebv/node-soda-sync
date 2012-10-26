@@ -48,7 +48,7 @@ accessed using '@'.
 
 ## upgrade to V1
 
-API was simplified thos are the main changes:
+API was simplified below are the main changes:
 
 - 1/ require: 
 
