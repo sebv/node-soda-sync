@@ -50,18 +50,8 @@ accessed using '@'.
 
 API was simplified below are the main changes:
 
-- 1/ require: 
-
-```
-sodaSync = require 'soda-sync'
-```
-
-- 2/ createClient: 
-
-```
-{browser,sync} = sodaSync.createClient(...
-```
-
+- 1/ require: `sodaSync = require 'soda-sync'`
+- 2/ createClient: `{browser,sync} = sodaSync.createClient(...`
 - 3/ Soda becomes sync
 - 4/ SodaCan becomes can (see can section below)
 - 5/ mode options have been disabled.
@@ -165,7 +155,7 @@ This is useful when writing test helpers.
 
 sodaSync = require 'soda-sync'
 
-{browser, sync} = soda.createClient(
+{browser, sync} = sodaSync.createClient(
   host: "localhost"
   port: 4444
   url: "http://www.google.com"
@@ -183,14 +173,19 @@ sync ->
 
 ## JavaScript
 
-This module is design with CoffeeScript in mind, but you could
-initialise your browser like the following, then use `browser` or `this` 
+This module is designed with CoffeeScript in mind, but you could
+initialize your browser like the following example, then use `browser` or `this` 
 instead of `@` in the sync/can blocks:
 
 ```javascript
-var client = sodaSync.createSauceClient(),
-    browser = client.browser,
-    sync = client.sync;
+var client = sodaSync.createClient(
+    host: "localhost"
+    port: 4444
+    url: "http://www.google.com"
+    browser: "firefox"
+  )       
+  , browser = client.browser,
+  , sync = client.sync;
 ```
 
 ## Selenium server
