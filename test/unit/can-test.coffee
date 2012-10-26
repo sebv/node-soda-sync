@@ -1,14 +1,17 @@
 should = require 'should'
-{soda,sync,can} = require '../../lib/soda-sync'
+sodaSync = require '../../lib/soda-sync'
 
 someText = null
 
-describe "JSLint compliant naming.", ->
+describe "can", ->
   
-  browser = null;
+  browser = null
+  can = sodaSync.can
+    with: -> browser
+    pre: -> @timeout 30000
 
   it "create client", (done) ->
-    browser = soda.createClient (
+    {browser} = sodaSync.createClient (
       host: "localhost"
       port: 4444
       url: "http://www.google.com"
@@ -17,19 +20,8 @@ describe "JSLint compliant naming.", ->
     )   
     done()
 
-  describe "with sync", ->
-    it "should work", (done) ->
-      sync with:browser, ->
-        @session()
-        @open '/'
-        @getTitle().toLowerCase().should.include 'google'
-        @testComplete()
-        done()
-
-  describe "with can", ->
+  describe "with soda can", ->
     it "should work", can
-      with: -> 
-        browser
       pre: ->
         @timeout 30000
         someText = 'Test1'

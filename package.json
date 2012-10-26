@@ -1,6 +1,6 @@
 {
     "name": "soda-sync"
-  , "version": "0.1.4"
+  , "version": "1.0.0"
   , "description": "sync version of soda using fibers."
   , "keywords": ["selenium","soda","test","fibers", "sync"]
   , "author": "Seb Vincent <seb.vincent@gmail.com>"

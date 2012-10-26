@@ -12,8 +12,16 @@ buildOptions = (mode) ->
 patch = (browser, options) ->
   if(options?.mode?)
     MakeSync browser, (buildOptions options.mode) 
-    browser.queue = null  # necessary cause soda is doing weird stuff
-  browser                 # in the 'chain' getter 
+    
+    # necessary cause soda is doing weird stuff in the 'chain' getter 
+    browser.queue = null  
+    
+    sync = (cb) ->
+      if cb?
+        Sync ->
+          Fiber.current.soda_sync_browser = browser
+          cb.apply browser , []
+    {browser,sync}
 
 sodaSync =
   # similar to soda
@@ -26,44 +34,21 @@ sodaSync =
   # useful when writting helpers  
   current: -> Fiber.current.soda_sync_browser
   
-Soda = (options, cb) ->
-  [options,cb] = [null,options] if typeof options is 'function' 
-  if cb?
-    Sync ->
-      Fiber.current.soda_sync_browser = options?.with
-      cb.apply options?.with, []
-  if options
-    # returning an identical function with context(browser) preconfigured 
-    (options2, cb2) ->
-      [options2,cb2] = [null,options2] if typeof options2 is 'function' 
-      options2 = options if not options2?
-      Soda options2, cb2      
 
-# careful, below browser is a function so it get evaluated with the rest
-# of the code  
-SodaCan = (options, cb) ->
-  [options,cb] = [null,options] if typeof options is 'function' 
-  if cb?
-    return (done) ->
-      options.pre.apply @, [] if options?.pre?
-      Sync ->
-        Fiber.current.soda_sync_browser = options?.with?()
-        cb.apply options?.with?(), []
-        done() if done?
-  if options
-    # returning an identical function with context(browser) preconfigured 
-    return (options2, cb2) ->
-      [options2,cb2] = [null,options2] if typeof options2 is 'function' 
-      options2 = options if not options2?
-      SodaCan options2, cb2      
+  # careful, below browser is a function so it get evaluated with the rest
+  # of the code  
+  can: (globalOptions) ->
+    (options, cb) ->
+      [options,cb] = [null,options] if typeof options is 'function' 
+      if cb?
+        return (done) ->
+          globalOptions.pre.apply @, [] if globalOptions?.pre?
+          options.pre.apply @, [] if options?.pre?
+          Sync ->
+            Fiber.current.soda_sync_browser = globalOptions?.with?()
+            cb.apply globalOptions?.with?(), []
+            done() if done?
 
-# naming used in examples and doc
-exports.Soda = Soda
-exports.SodaCan = SodaCan
-exports.soda = sodaSync
-
-# alternate JSLint compliant naming
-exports.sync = Soda
-exports.can = SodaCan
+module.exports = sodaSync
 
 
