@@ -2,7 +2,7 @@
 
 Note: API change in version 1.0.0, see below.
 
-A synchronous Version with a nice api of [soda](http://github.com/LearnBoost/soda.git), the node client for
+A synchronous version of [soda](http://github.com/LearnBoost/soda.git), the node client for
 [Selenium](http://seleniumhq.org), built using [node-fibers](http://github.com/laverdet/node-fibers).
 
 Remote testing with [Sauce Labs](http://saucelabs.com) also works.
@@ -26,7 +26,6 @@ sodaSync = require 'soda-sync'
   port: 4444
   url: "http://www.google.com"
   browser: "firefox"
-  mode: 'sync'
 )   
 
 sync ->
@@ -51,15 +50,25 @@ accessed using '@'.
 
 API was simplified thos are the main changes:
 
-- 1/ require: sodaSync = require 'soda-sync'
-- 2/ createClient: {browser,sync} = sodaSync.createClient(...
+- 1/ require: 
+
+```
+sodaSync = require 'soda-sync'
+```
+
+- 2/ createClient: 
+
+```
+{browser,sync} = sodaSync.createClient(...
+```
+
 - 3/ Soda becomes sync
 - 4/ SodaCan becomes can (see can section below)
+- 5/ mode options have been disabled.
 
 ## Sauce Labs example
 
-Remote testing with [Sauce Labs](http://saucelabs.com), works the same as with soda,
-just add the mode field to the options.
+Remote testing with [Sauce Labs](http://saucelabs.com), works the same as with soda.
 
 ```coffeescript
 sodaSync = require 'soda-sync'
@@ -77,7 +86,6 @@ access_key = '<ACCESS-KEY>'
   "browser-version": "3."
   "max-duration": 300
   name: "soda-sync sauce example"
-  mode: 'sync'
 )
 browser.on 'command', (cmd, args) ->
   console.log ' \x1b[33m%s\x1b[0m: %s', cmd, args.join(', ')   
@@ -124,7 +132,6 @@ describe "can", ->
       port: 4444
       url: "http://www.google.com"
       browser: "firefox"
-      mode: 'sync'
     )   
     done()
 
@@ -156,22 +163,19 @@ This is useful when writing test helpers.
 ```coffeescript
 # Assumes that the selenium server is running
 
-{soda,Soda} = require 'soda-sync'
+sodaSync = require 'soda-sync'
 
-browser = soda.createClient(
+{browser, sync} = soda.createClient(
   host: "localhost"
   port: 4444
   url: "http://www.google.com"
   browser: "firefox"
-  mode: 'sync'
 )   
 
 openRoot = ->
-  soda.current().open '/'
+  sodaSync.current().open '/'
 
-Soda = Soda with:browser
-
-Soda -> 
+sync -> 
   @session()
   openRoot()  
   @testComplete()
