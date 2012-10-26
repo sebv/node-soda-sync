@@ -2,8 +2,8 @@
 
 Note: API change in version 1.0.0, see below.
 
-A synchronous version of [soda](http://github.com/LearnBoost/soda.git), the node client for
-[Selenium](http://seleniumhq.org), built using [node-fibers](http://github.com/laverdet/node-fibers).
+A synchronous version of [soda](http://github.com/LearnBoost/soda.git) 
+using [node-fibers](http://github.com/laverdet/node-fibers).
 
 Remote testing with [Sauce Labs](http://saucelabs.com) also works.
 
