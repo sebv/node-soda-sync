@@ -111,7 +111,7 @@ should = require 'should'
 sodaSync = require 'soda-sync'
 
 describe "can", ->
-  {browser} = null;
+  browser = null
   can = sodaSync.can
     with: -> browser
     pre: -> @timeout 60000 # optional global pre
@@ -178,6 +178,7 @@ initialize your browser like the following example, then use `browser` or `this`
 instead of `@` in the sync/can blocks:
 
 ```javascript
+var sodaSync = require('soda-sync');
 var client = sodaSync.createClient({
     host: "localhost",
     port: 4444,
