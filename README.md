@@ -181,6 +181,18 @@ sync ->
   @testComplete()
 ```
 
+## JavaScript
+
+This module is design with CoffeeScript in mind, but you could
+initialise your browser like the following, then use `browser` or `this` 
+instead of `@` in the sync/can blocks:
+
+```javascript
+var client = sodaSync.createSauceClient(),
+    browser = client.browser,
+    sync = client.sync;
+```
+
 ## Selenium server
 
 Download the Selenium server [here](http://seleniumhq.org/download/).
