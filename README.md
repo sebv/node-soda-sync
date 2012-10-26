@@ -104,7 +104,7 @@ sync ->
 
 ## Soda can
 
-can is a wrapper around Soda, making it easy to integrate with the usual
+can is a wrapper around Soda, making it easy to integrate with
 test frameworks.
 
 The example below is using the mocha test framework. The 'done' callback is managed within the Soda can.
