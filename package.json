@@ -11,7 +11,7 @@
     "test": "cake test",
     "install-selenium": "./scripts/install_selenium",
     "start-selenium": "./scripts/start_selenium &",
-    "kill-selenium": "kill -9 `ps -ef | grep selenium-server | grep -v grep | awk '{print $2}'` &"
+    "kill-selenium": "./scripts/kill_selenium"
   }
   , "dependencies": {
     "soda": "git://github.com/LearnBoost/soda.git",
