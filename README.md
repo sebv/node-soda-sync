@@ -1,4 +1,4 @@
-# soda-sync
+# node-soda-sync [![Build Status](https://secure.travis-ci.org/sebv/node-soda-sync.png?branch=master)](http://travis-ci.org/sebv/node-soda-sync)
 
 Note: API change in version 1.0.0, see below.
 
