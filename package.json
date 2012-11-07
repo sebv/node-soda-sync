@@ -8,7 +8,10 @@
   , "main": "./index"
   , "engine": "node >= 0.6.1"
   , "scripts": {
-    "test": "cake test"
+    "test": "cake test",
+    "install-selenium": "./scripts/install_selenium",
+    "start-selenium": "./scripts/start_selenium &",
+    "kill-selenium": "kill -9 `ps -ef | grep selenium-server | grep -v grep | awk '{print $2}'` &"
   }
   , "dependencies": {
     "soda": "git://github.com/LearnBoost/soda.git",
