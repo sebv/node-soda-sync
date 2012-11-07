@@ -15,10 +15,12 @@ task 'clean', 'Remove all js files', ->
   u.js.clean JS_PATHS 
 
 task 'test', 'Run All tests', ->
-  u.mocha.test 'test/unit'
+  u.mocha.test 'test/unit', (status) ->
+    process.exit status if status isnt 0
 
 task 'test:sauce', 'Run Sauce Labs integration test', ->
-  u.mocha.test 'test/sauce'
+  u.mocha.test 'test/sauce', (status) ->
+    process.exit status if status isnt 0
 
 task 'grep:dirty', 'Lookup for debugger and console.log in code', ->
   u.grep.debug()
