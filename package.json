@@ -8,10 +8,7 @@
   , "main": "./index"
   , "engine": "node >= 0.6.1"
   , "scripts": {
-    "test": "cake test",
-    "install-selenium": "./scripts/install_selenium",
-    "start-selenium": "./scripts/start_selenium &",
-    "kill-selenium": "./scripts/kill_selenium"
+    "test": "cake test"
   }
   , "dependencies": {
     "soda": "git://github.com/LearnBoost/soda.git",
@@ -22,5 +19,6 @@
     , "sv-cake-utils" : "0.1.x"
     , "mocha": "1.6.x"
     ,"should": "1.2.x"
+    ,"sv-selenium": "0.1.x"
   }
 }

@@ -2,11 +2,12 @@ language: node_js
 node_js:
   - 0.8
 before_install:
-  - "npm run-script install-selenium"
+  - "./node_modules/.bin/install_selenium"
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - "npm run-script kill-selenium"
-  - "npm run-script start-selenium"
+  - "./node_modules/.bin/kill_selenium"
+  - "./node_modules/.bin/start-selenium &"
   - "sleep 10"
 script: "npm test"
+

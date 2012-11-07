@@ -1,8 +1,0 @@
-#!/bin/bash
-mkdir temp
-rm -rf temp/sv-selenium
-cd temp
-git clone git://github.com/sebv/sv-selenium.git
-cd sv-selenium
-./install.sh
-
