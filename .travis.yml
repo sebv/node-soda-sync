@@ -9,6 +9,4 @@ before_script:
   - "npm run-script kill-selenium"
   - "npm run-script start-selenium"
   - "sleep 20"
-after_script:
-  - "npm run-script kill-selenium"
 script: "npm test"
