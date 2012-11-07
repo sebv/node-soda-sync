@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - 0.8
-before_install:
+after_install:
   - "./node_modules/.bin/install_selenium"
 before_script:
   - "export DISPLAY=:99.0"
