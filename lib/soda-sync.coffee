@@ -1,5 +1,5 @@
 soda = require("soda")
-{makeSync,sync} = require 'make-sync'
+{makeSync,sync,current} = require 'make-sync'
 
 buildOptions = 
   mode: 'sync'
@@ -15,7 +15,7 @@ patch = (browser, options) ->
   _sync = (cb) ->
     if cb?
       sync ->
-        Fiber.current.soda_sync_browser = browser
+        current().soda_sync_browser = browser
         cb.apply browser , []
   {
     browser: browser
@@ -31,7 +31,7 @@ sodaSync =
     
   # retrieve the browser currently in use
   # useful when writting helpers  
-  current: -> Fiber.current.soda_sync_browser
+  current: -> current().soda_sync_browser
   
 
   # careful, below browser is a function so it get evaluated with the rest
@@ -44,7 +44,7 @@ sodaSync =
           globalOptions.pre.apply @, [] if globalOptions?.pre?
           options.pre.apply @, [] if options?.pre?
           sync ->
-            Fiber.current.soda_sync_browser = globalOptions?.with?()
+            current().soda_sync_browser = globalOptions?.with?()
             cb.apply globalOptions?.with?(), []
             done() if done?
 

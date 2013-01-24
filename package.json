@@ -11,14 +11,14 @@
     "test": "cake test"
   }
   , "dependencies": {
-    "soda": "git://github.com/LearnBoost/soda.git",
+    "soda": "0.2.x",
     "make-sync": "0.1.x"
   }
   , "devDependencies" : {
-    "coffee-script" : "1.3.x"    
-    , "sv-cake-utils" : "0.1.x"
-    , "mocha": "1.6.x"
-    ,"should": "1.2.x"
-    ,"sv-selenium": "0.1.x"
+    "coffee-script" : "latest"    
+    , "sv-cake-utils" : "latest"
+    , "mocha": "latest"
+    ,"should": "latest"
+    ,"sv-selenium": "latest"
   }
 }
